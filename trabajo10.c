@@ -1,42 +1,28 @@
 #include <stdio.h>
 
-int unid_cent(char unidades[20]);
-int cent(char centenas[20]);
 int decen(char decenas[20]);
 
 int main(){
-  char centenas[20], decenas[20], unidades[10], teens[20];
-  int centenas_n, decenas_n;
+  char centenas[20], decenas[20], unidades[10], y[2];
+  int centenas_n, decenas_n, unidades_n;
   printf("Ingresa un numero cardinal (e.j. ciento veintiocho): ");
   scanf("%s", centenas);
-  centenas_n = unid_cent(centenas);
-  scanf("%s", decenas);
-  decenas_n = decen(decenas);
-  printf("%d%d\n", centenas_n, decenas_n);
-  fflush(stdin);
-  getchar();
-  return 0;
-}
-
-
-int unid_cent(char unidades[20]){
-  int unidades_n;
-  switch (unidades[0]){
+  switch (centenas[0]){
     case ('c'):
-      switch(unidades[1]){
+      switch(centenas[1]){
         case('e'):
-          unidades_n = 0;
+          centenas_n = 0;
           break;
         case ('u'):
-          unidades_n = 4;
+          centenas_n = 4;
           break;
         case ('i'):
-          switch(unidades[2]){
+          switch(centenas[2]){
             case 'e':
-              unidades_n = 1;
+              centenas_n = 1;
               break;
             case 'n':
-              unidades_n = 5;
+              centenas_n = 5;
               break;
           }
           break;
@@ -44,93 +30,47 @@ int unid_cent(char unidades[20]){
       break;
 
     case ('u'):
-      unidades_n = 1;
+      centenas_n = 1;
       break;
 
     case ('d'):
-      unidades_n = 2;
+      centenas_n = 2;
       break;
 
     case ('t'):
-      unidades_n = 3;
+      centenas_n = 3;
       break;
 
     case ('s'):
-      switch(unidades[1]){
+      switch(centenas[1]){
         case ('e'):
-          switch(unidades[2]){
+          switch(centenas[2]){
             case 't':
-              unidades_n = 7;
+              centenas_n = 7;
               break;
             case 'i':
-              unidades_n = 6;
+              centenas_n = 6;
               break;
         }
         break;
         case ('i'):
-          unidades_n = 7;
+          centenas_n = 7;
           break;
       }
       break;
 
     case ('o'):
-      unidades_n = 8;
+      centenas_n = 8;
       break;
 
     case ('n'):
-      unidades_n = 9;
-      break;
-    case('q'):
-      unidades_n = 5;
-      break;
-  }
-  return unidades_n;
-}
-
-int cent(char centenas[20]){
-  int centenas_n;
-  switch(centenas[0]){
-    case 'c':
-      switch(centenas[1]){
-        case 'i':
-          centenas_n = 1;
-          break;
-        case 'u':
-          centenas_n = 4;
-          break;
-      }
-      break;
-    case 'd':
-      centenas_n = 2;
-      break;
-    case 't':
-      centenas_n = 3;
-      break;
-    case 'q':
-      centenas_n = 5;
-      break;
-    case 's':
-      switch(centenas[2]){
-        case 'i':
-          centenas_n = 6;
-          break;
-        case 't':
-          centenas_n = 7;
-          break;
-      }
-      break;
-    case 'o':
-      centenas_n = 8;
-      break;
-    case 'n':
       centenas_n = 9;
       break;
+    case('q'):
+      centenas_n = 5;
+      break;
   }
-  return centenas_n;
-}
-
-int decen(char decenas[20]){
-  int decenas_n=0;
+  scanf("%s", decenas);
   switch(decenas[0]){
     case 'd':
       switch(decenas[3]){
@@ -195,7 +135,78 @@ int decen(char decenas[20]){
       decenas_n = 15;
       break;
     case 'v':
-      decenas_n = 2;
+      switch(decenas[5]){
+        case 'e':
+          decenas_n = 20;
+          break;
+        case 'i':
+        switch (decenas[6]){
+          case ('c'):
+            switch(decenas[7]){
+              case('e'):
+                decenas_n = 0;
+                break;
+              case ('u'):
+                decenas_n = 4;
+                break;
+              case ('i'):
+                switch(decenas[8]){
+                  case 'e':
+                    decenas_n = 1;
+                    break;
+                  case 'n':
+                    decenas_n = 5;
+                    break;
+                }
+                break;
+            }
+            break;
+
+          case ('u'):
+            decenas_n = 1;
+            break;
+
+          case ('d'):
+            decenas_n = 2;
+            break;
+
+          case ('t'):
+            decenas_n = 3;
+            break;
+
+          case ('s'):
+            switch(decenas[7]){
+              case ('e'):
+                switch(decenas[8]){
+                  case 't':
+                    decenas_n = 7;
+                    break;
+                  case 'i':
+                    decenas_n = 6;
+                    break;
+              }
+              break;
+              case ('i'):
+                decenas_n = 7;
+                break;
+            }
+            break;
+
+          case ('o'):
+            decenas_n = 8;
+            break;
+
+          case ('n'):
+            decenas_n = 9;
+            break;
+          case('q'):
+            decenas_n = 5;
+            break;
+        }
+          decenas_n += 20;
+          break;
+
+      }
       break;
     case 's':
       switch(decenas[2]){
@@ -211,5 +222,78 @@ int decen(char decenas[20]){
       decenas_n = 9;
       break;
   }
-  return decenas_n;
+  if (decenas_n<10){
+    scanf("%s", y);
+    scanf("%s", unidades);
+    switch (unidades[0]){
+      case ('c'):
+        switch(unidades[1]){
+          case('e'):
+            unidades_n = 0;
+            break;
+          case ('u'):
+            unidades_n = 4;
+            break;
+          case ('i'):
+            switch(unidades[2]){
+              case 'e':
+                unidades_n = 1;
+                break;
+              case 'n':
+                unidades_n = 5;
+                break;
+            }
+            break;
+        }
+        break;
+
+      case ('u'):
+        unidades_n = 1;
+        break;
+
+      case ('d'):
+        unidades_n = 2;
+        break;
+
+      case ('t'):
+        unidades_n = 3;
+        break;
+
+      case ('s'):
+        switch(unidades[1]){
+          case ('e'):
+            switch(unidades[2]){
+              case 't':
+                unidades_n = 7;
+                break;
+              case 'i':
+                unidades_n = 6;
+                break;
+          }
+          break;
+          case ('i'):
+            unidades_n = 7;
+            break;
+        }
+        break;
+
+      case ('o'):
+        unidades_n = 8;
+        break;
+
+      case ('n'):
+        unidades_n = 9;
+        break;
+      case('q'):
+        unidades_n = 5;
+        break;
+    }
+    printf("%d%d%d\n\n", centenas_n, decenas_n, unidades_n);
+  }
+  else{
+    printf("%d%d\n\n", centenas_n, decenas_n);
+  }
+  fflush(stdin);
+  getchar();
+  return 0;
 }
